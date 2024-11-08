@@ -2,14 +2,15 @@ package MyObjects;
 
 public interface Items {
 
-    public default void broking_text_message(){}
+    public default void brokingTextMessage(){}
 
-    public default double get_hp(){return 0;}
+    public default double getHp(){return 0;}
 
-    public default void receiving_text_message(){}
+    public default void receivingTextMessage(){}
 
-    public default boolean get_state() {return true;}
+    public default boolean getState() {return true;}
 
-    public default Materials get_material() {return Materials.NOTHING;}
+    public default Materials getMaterial() {return Materials.NOTHING;}
 
+    public default void applyAttrition(double extra_damage_percent){}
 }

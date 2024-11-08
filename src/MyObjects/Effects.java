@@ -4,7 +4,6 @@ public enum Effects {
 
     EMPTY,
     POISONING,
-    HEADACHE,
     DIZZINESS,
     BLINDED,
     BLEEDING;
