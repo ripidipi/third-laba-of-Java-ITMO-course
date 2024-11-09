@@ -33,6 +33,6 @@ public abstract class MinorCharacter extends Character implements SupportingChar
     }
 
     protected void messageForEffect(Effects effect) {
-        System.out.println(this.getClass() + " " + this.name + " imposed the effect of " + effect.toString() + ". It changes " + effect.effectChanges());
+        System.out.println(this.getClass() + " " + this.name + " imposed the effect of " + effect.toString());
     }
 }

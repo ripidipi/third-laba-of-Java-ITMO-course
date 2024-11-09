@@ -11,14 +11,14 @@ public enum Materials {
     COTTON(0.8),
     DIAMOND(0.3);
 
-    private final double endurance_coficent;
+    private final double endurance_coefficient;
 
-    Materials(double coficent) {
-        this.endurance_coficent = coficent;
+    Materials(double coefficient) {
+        this.endurance_coefficient = coefficient;
     }
 
-    public double getEnduranceCoficent() {
-        return endurance_coficent;
+    public double getEnduranceCoefficient() {
+        return endurance_coefficient;
     }
 
     @Override

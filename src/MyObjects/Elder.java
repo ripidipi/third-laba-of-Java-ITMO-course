@@ -26,8 +26,9 @@ public class Elder extends MinorCharacter implements Healer {
         if (rand < 0.4) {
             messageForIgnor();
         } else {
-            c.applyHeal(calculateRandomHeal());
-            messageForHeal();
+            double rand_heal = calculateRandomHeal();
+            c.applyHeal(rand_heal);
+            messageForHeal(rand_heal);
         }
     }
 
