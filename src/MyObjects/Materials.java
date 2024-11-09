@@ -20,4 +20,9 @@ public enum Materials {
     public double getEnduranceCoficent() {
         return endurance_coficent;
     }
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }

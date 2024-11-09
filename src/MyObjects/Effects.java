@@ -10,7 +10,10 @@ public enum Effects {
 
     @Override
     public String toString() {
-        return "Effects is " + super.toString().toLowerCase();
+        return super.toString().toLowerCase();
     }
 
+    public String effectChanges() {
+        return "";
+    }
 }

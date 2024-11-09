@@ -1,5 +1,7 @@
 package MyObjects;
 
+import java.util.Objects;
+
 public class Equipment implements Items {
 
     protected double hp;
@@ -47,6 +49,11 @@ public class Equipment implements Items {
     }
 
     @Override
+    public  double getStepAttrition() {
+        return this.step_attrition;
+    }
+
+    @Override
     public void applyAttrition(double extra_damage_percent) {
         /* apply attrition for boots */
         this.attrition(this.calculateAttrition(extra_damage_percent));
@@ -70,5 +77,33 @@ public class Equipment implements Items {
     private double calculateAttrition(double damage_percent) {
         /* calculate attrition and return double with damage */
         return this.step_attrition * (damage_percent) * this.material.getEnduranceCoficent();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {return true;}
+        if (o == null || (getClass() != o.getClass())) {return false;}
+        Equipment equipment = (Equipment) o;
+        return  Objects.equals(name, equipment.name) &&
+                hp == equipment.hp &&
+                material == equipment.material &&
+                state == equipment.state &&
+                step_attrition == equipment.step_attrition;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, hp, material, state, step_attrition);
+    }
+
+    @Override
+    public String toString() {
+        return "Witch{" +
+                "name='" + name + '\'' +
+                ", hp=" + hp +
+                ", material='" + material.toString() + '\'' +
+                ", state=" + state + '\''+
+                ", step_attrition=" + step_attrition + '\''+
+                '}';
     }
 }

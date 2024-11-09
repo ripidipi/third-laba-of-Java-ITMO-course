@@ -1,6 +1,6 @@
 package MyObjects;
 
-public class Character implements LivingBeing {
+public abstract class Character implements LivingBeing {
 
     protected String name;
     protected double hp;
@@ -12,20 +12,22 @@ public class Character implements LivingBeing {
         this.damage = damage;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public double getHp() {
         return hp;
     }
 
+    @Override
     public double getDamage() {
         return damage;
     }
 
-    public void applyDamage(double damage) {
-        this.hp -= damage;
-    }
+    @Override
+    public abstract void move();
 
 }

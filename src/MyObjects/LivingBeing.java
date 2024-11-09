@@ -8,4 +8,5 @@ public interface LivingBeing {
 
     public default String getName(){return "";}
 
+    public abstract void move();
 }

@@ -1,6 +1,8 @@
 package MyObjects;
 
-public class Witch extends Character implements Villains, Healer{
+import java.util.Objects;
+
+public class Witch extends MinorCharacter implements Healer{
 
     private final double heal_base;
 
@@ -42,15 +44,29 @@ public class Witch extends Character implements Villains, Healer{
         c.applyEffect(effect);
     }
 
-    private void messageForIgnor() {
-        System.out.println("Witch just ignored");
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {return true;}
+        if (o == null || (getClass() != o.getClass())) {return false;}
+        Witch witch = (Witch) o;
+        return  Objects.equals(name, witch.name) &&
+                hp == witch.hp &&
+                damage == witch.damage &&
+                heal_base == witch.heal_base;
     }
 
-    private void messageForHeal(double amount_of_heal) {
-        System.out.println("Witch got potion. It heals " + amount_of_heal + " hp");
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, hp, damage, heal_base);
     }
 
-    private void messageForDamage(double amount_of_damage) {
-        System.out.println("Witch beats with a cane and deals " + amount_of_damage + " damage");
+    @Override
+    public String toString() {
+        return "Witch{" +
+                "name='" + name + '\'' +
+                ", hp=" + hp +
+                ", damage='" + damage + '\'' +
+                ", heal_base=" + heal_base + '\''+
+                '}';
     }
 }

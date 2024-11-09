@@ -21,6 +21,6 @@ public enum Obstacle {
 
     @Override
     public String toString() {
-        return "Went to " + super.toString().toLowerCase();
+        return super.toString().toLowerCase();
     }
 }
