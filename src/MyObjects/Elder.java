@@ -23,7 +23,7 @@ public class Elder extends MinorCharacter implements Healer {
     @Override
     public void chooseRandomAction(MainCharacter c) {
         double rand = Math.random();
-        if (rand < 0.4) {
+        if (rand < 0.2) {
             messageForIgnor();
         } else {
             double rand_heal = calculateRandomHeal();

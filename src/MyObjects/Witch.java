@@ -1,6 +1,7 @@
 package MyObjects;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Witch extends MinorCharacter implements Healer{
 
@@ -28,12 +29,17 @@ public class Witch extends MinorCharacter implements Healer{
     @Override
     public void chooseRandomAction(MainCharacter c) {
         double rand = Math.random();
-        if (rand < 0.7) {
+        if (rand < 0.2) {
             messageForIgnor();
-        } else if (rand < 0.8) {
+        } else if (rand < 0.7) {
             double rand_heal = calculateRandomHeal();
             heal(c, rand_heal);
             messageForHeal(rand_heal);
+        } else if (rand < 0.8) {
+            Effects[] effects = {Effects.POISONING, Effects.DIZZINESS, Effects.BLINDED,
+                                Effects.HAPPINESS, Effects.EMPTY, Effects.CRYING};
+            Random randChoose = new Random();
+            c.applyEffect(effects[randChoose.nextInt(effects.length)]);
         } else {
             c.applyDamage(damage);
             messageForDamage(damage);

@@ -15,7 +15,7 @@ public enum Obstacle {
         this.endurance_coefficient = coefficient;
     }
 
-    public double getEnduranceCoficent() {
+    public double getEnduranceCoefficient() {
         return endurance_coefficient;
     }
 
