@@ -16,6 +16,8 @@ public interface MainCharacter {
 
     public default double getSpeed() {return 0;}
 
+    public default String getName() {return "";}
+
     public default ArrayList<Items> getEquipments() {return new ArrayList<Items>();}
 
     public default void addEquipment(Equipment equipment) {}
