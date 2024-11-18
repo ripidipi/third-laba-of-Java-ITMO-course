@@ -12,7 +12,7 @@ public class Protagonist extends Character implements MainCharacter {
     private double speed;
     private ArrayList<Items> equipments = new ArrayList<Items>();
 
-    Protagonist(String name, double hp, double damage) {
+    Protagonist(String name, double hp, double damage, double level_of_beauty, double intelligence, double speed) {
         super(name, hp, damage);
         this.effect = Effects.EMPTY;
     }
