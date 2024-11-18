@@ -26,7 +26,7 @@ public class Spirit extends MinorCharacter implements Healer{
     }
 
     private void endMessage(MainCharacter c) {
-        System.out.println(c.getName() + " met " + this.getClass() + ' ' + this.name + ".\nEnd of the story");
+        System.out.println(c.getName() + " met " + this.getClass().toString().split("\\.")[1] + ' ' + this.name + ".\nEnd of the story");
     }
 
 }

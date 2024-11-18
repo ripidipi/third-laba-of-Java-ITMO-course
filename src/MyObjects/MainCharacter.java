@@ -23,4 +23,7 @@ public interface MainCharacter {
     public default void addEquipment(Equipment equipment) {}
 
     public default void removeEquipment(Equipment equipment) {}
+
+    public default void setEquipment(ArrayList<Items> equipments) {}
+
 }

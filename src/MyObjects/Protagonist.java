@@ -74,6 +74,12 @@ public class Protagonist extends Character implements MainCharacter {
     }
 
     @Override
+    public void setEquipment(ArrayList<Items> equipments) {
+        this.equipments.clear();
+        this.equipments.addAll(equipments);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {return true;}
         if (o == null || (getClass() != o.getClass())) {return false;}

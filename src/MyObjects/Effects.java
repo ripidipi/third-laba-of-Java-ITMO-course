@@ -29,7 +29,7 @@ public enum Effects {
     @Override
     public String toString() {
         return super.toString().toLowerCase() +
-                " modifiers: hp" + this.hp +
+                " modifiers: hp " + this.hp +
                 " / damage " + this.damage +
                 " / level of beauty " + this.level_of_beauty +
                 " / speed " + this.speed +
