@@ -51,14 +51,14 @@ public class RandGeneration implements Generator{
     @Override
     public Elder creatingElder() {
         String name = names.get((int)(Math.random() * names.size()));
-        double hp = baseParameterGeneration(), damage = baseParameterGeneration(), heal = 20;
+        double hp = baseParameterGeneration(), damage = baseParameterGeneration(), heal = 50;
         return new Elder(name, hp, damage, heal);
     }
 
     @Override
     public Witch creatingWitch() {
         String name = names.get((int)(Math.random() * names.size()));
-        double hp = baseParameterGeneration(), damage = baseParameterGeneration(), heal = 10;
+        double hp = baseParameterGeneration(), damage = baseParameterGeneration(), heal = 30;
         return new Witch(name, hp, damage, heal);
     }
 
@@ -71,7 +71,7 @@ public class RandGeneration implements Generator{
 
     @Override
     public Equipment creatingEquipment(String name, Materials material) {
-        double hp = baseParameterGeneration(), base_step_attrition = (Math.random() + 0.1) * 100;
+        double hp = baseParameterGeneration(), base_step_attrition = (Math.random() + 0.1) * 50;
         return new Equipment(name, hp, material, base_step_attrition);
     }
 

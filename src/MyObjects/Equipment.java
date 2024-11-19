@@ -24,6 +24,10 @@ public class Equipment implements Items {
         System.out.println("The " + this.name + " is broken");
     }
 
+    private void messageForAttrition(double damage) {
+        System.out.printf("During this time, the %s %s was worn out by %.2f\n", this.material, this.name, damage);
+    }
+
     @Override
     public double getHp() {
         /* return hp of equipment */
@@ -56,7 +60,9 @@ public class Equipment implements Items {
     @Override
     public void applyAttrition(double extra_damage_percent) {
         /* apply attrition for boots */
-        this.attrition(this.calculateAttrition(extra_damage_percent));
+        double damage = this.calculateAttrition(extra_damage_percent);
+        messageForAttrition(damage);
+        this.attrition(damage);
     }
 
     public void setState(boolean new_state) {
@@ -67,11 +73,21 @@ public class Equipment implements Items {
     public void setHp(double new_hp) {
         /* set hp */
         hp = new_hp;
+        if (this.hp <= 0) {
+            state = false;
+        }
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     protected void attrition(double damage) {
         /* apply damage that equipment take every step */
         this.hp -= damage;
+        if (this.hp <= 0) {
+            state = false;
+        }
     }
 
     private double calculateAttrition(double damage_percent) {

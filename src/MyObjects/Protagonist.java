@@ -58,6 +58,14 @@ public class Protagonist extends Character implements MainCharacter {
         this.speed *= effect.getSpeedModifier();
     }
 
+    protected void messageForSetEquipment(ArrayList<Items> equipments) {
+        System.out.printf("%s %s got: ", this.getClass().toString().split("\\.")[1], this.name);
+        for (Items item : equipments) {
+            System.out.printf("\n%s  %s", item.getMaterial(), item.getName());
+        }
+    }
+
+
     @Override
     public ArrayList<Items> getEquipments() {
         return this.equipments;
@@ -75,6 +83,7 @@ public class Protagonist extends Character implements MainCharacter {
 
     @Override
     public void setEquipment(ArrayList<Items> equipments) {
+        messageForSetEquipment(equipments);
         this.equipments.clear();
         this.equipments.addAll(equipments);
     }

@@ -1,5 +1,7 @@
 package MyObjects;
 
+import java.util.Random;
+
 public enum Obstacle {
 
     FOREST(1.5),
@@ -17,6 +19,13 @@ public enum Obstacle {
 
     public double getEnduranceCoefficient() {
         return endurance_coefficient;
+    }
+
+    private static final Random PRNG = new Random();
+
+    public static Obstacle randomObstacle()  {
+        Obstacle[] obstacle = values();
+        return obstacle[PRNG.nextInt(obstacle.length)];
     }
 
     @Override

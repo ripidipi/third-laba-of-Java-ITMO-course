@@ -15,4 +15,6 @@ public interface Items {
     public default double getStepAttrition() {return 0;}
 
     public default void applyAttrition(double extra_damage_percent){}
+
+    public default String getName(){return "";}
 }
