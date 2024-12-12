@@ -2,48 +2,23 @@ package MyObjects;
 
 import java.util.Objects;
 
-public class Equipment implements Items {
+public abstract class Equipment implements Items {
 
-    protected double hp;
-    protected boolean state; // state is equipment total or if it's broken (total - 1, broken - 0)
+    protected double wearPercent;
     protected final Materials material;
-    protected final String name;
-    protected final double step_attrition;
+    protected final double stepAttrition;
 
-    Equipment (String equipment_name, double hp, Materials main_material, double base_step_attrition) {
-        this.hp = hp;
-        this.material = main_material;
-        this.state = true;
-        this.step_attrition = base_step_attrition;
-        this.name = equipment_name;
+
+    Equipment (Materials mainMaterial, double baseStepAttrition) {
+        this.wearPercent = 100;
+        this.material = mainMaterial;
+        this.stepAttrition = baseStepAttrition;
     }
 
     @Override
-    public void brokingTextMessage() {
-        /* print message if hp <= 0, it's mean that equipment broken */
-        System.out.println("The " + this.name + " is broken");
-    }
-
-    private void messageForAttrition(double damage) {
-        System.out.printf("During this time, the %s %s was worn out by %.2f\n", this.material, this.name, damage);
-    }
-
-    @Override
-    public double getHp() {
+    public double getWearPercent() {
         /* return hp of equipment */
-        return this.hp;
-    }
-
-    @Override
-    public void receivingTextMessage() {
-        /* print message if character received equipment */
-        System.out.println("The " + this.name + " has been received");
-    }
-
-    @Override
-    public boolean getState() {
-        /* return state of equipment */
-        return this.state;
+        return this.wearPercent;
     }
 
     @Override
@@ -54,45 +29,37 @@ public class Equipment implements Items {
 
     @Override
     public  double getStepAttrition() {
-        return this.step_attrition;
+        return this.stepAttrition;
     }
 
     @Override
-    public void applyAttrition(double extra_damage_percent) {
+    public void applyAttrition(double extraPercent) {
         /* apply attrition for boots */
-        double damage = this.calculateAttrition(extra_damage_percent);
-        messageForAttrition(damage);
-        this.attrition(damage);
+        double wearPerStroke = this.calculateAttrition(extraPercent);
+        System.out.printf("%s wear and tear were worn out by %.1f percent", this.getClass().toString().split("\\.")[1], wearPerStroke);
+        this.attrition(wearPerStroke);
     }
 
-    public void setState(boolean new_state) {
-        /* set state */
-        this.state = new_state;
+    public abstract int getId();
+
+    public void setWearPercent(double wearPercent) {
+        /* set wearPercent */
+        this.wearPercent = wearPercent;
     }
 
-    public void setHp(double new_hp) {
-        /* set hp */
-        hp = new_hp;
-        if (this.hp <= 0) {
-            state = false;
-        }
+    @Override
+    public boolean isItWhole() {
+        return this.wearPercent > 0;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    protected void attrition(double damage) {
+    protected void attrition(double additionalWear) {
         /* apply damage that equipment take every step */
-        this.hp -= damage;
-        if (this.hp <= 0) {
-            state = false;
-        }
+        this.wearPercent -= additionalWear;
     }
 
     private double calculateAttrition(double damage_percent) {
         /* calculate attrition and return double with damage */
-        return this.step_attrition * (damage_percent) * this.material.getEnduranceCoefficient();
+        return this.stepAttrition * (damage_percent) * this.material.getEnduranceCoefficient();
     }
 
     @Override
@@ -100,26 +67,24 @@ public class Equipment implements Items {
         if (this == o) {return true;}
         if (o == null || (getClass() != o.getClass())) {return false;}
         Equipment equipment = (Equipment) o;
-        return  Objects.equals(name, equipment.name) &&
-                hp == equipment.hp &&
-                material == equipment.material &&
-                state == equipment.state &&
-                step_attrition == equipment.step_attrition;
+        return  material == equipment.material &&
+                wearPercent == equipment.wearPercent &&
+                stepAttrition == equipment.stepAttrition;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, hp, material, state, step_attrition);
+        return Objects.hash(wearPercent, material, stepAttrition);
     }
 
     @Override
     public String toString() {
-        return "Witch{" +
-                "name='" + name + '\'' +
-                ", hp=" + hp +
+        return "Equipment{" +
+                "wearPercent='" + wearPercent + '\'' +
                 ", material='" + material.toString() + '\'' +
-                ", state=" + state + '\''+
-                ", step_attrition=" + step_attrition + '\''+
+                ", step_attrition=" + stepAttrition + '\''+
                 '}';
     }
+
+
 }
