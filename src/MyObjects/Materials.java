@@ -11,7 +11,9 @@ public enum Materials {
     STONE(0.5),
     GOLD(0.9),
     COTTON(0.8),
-    DIAMOND(0.3);
+    DIAMOND(0.3),
+    BLOOD(100),
+    WATER(100),;
 
     private final double enduranceCoefficient;
 

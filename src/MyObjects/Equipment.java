@@ -79,7 +79,7 @@ public abstract class Equipment implements Items {
 
     @Override
     public String toString() {
-        return "Equipment{" +
+        return this.getClass().toString().split("\\.")[1] + "{" +
                 "wearPercent='" + wearPercent + '\'' +
                 ", material='" + material.toString() + '\'' +
                 ", step_attrition=" + stepAttrition + '\''+

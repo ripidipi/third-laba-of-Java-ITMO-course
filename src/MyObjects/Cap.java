@@ -17,8 +17,7 @@ public class Cap extends Equipment {
         if (this == o) {return true;}
         if (o == null || (getClass() != o.getClass())) {return false;}
         Cap cap = (Cap) o;
-        return  id == cap.id &&
-                material == cap.material &&
+        return material == cap.material &&
                 wearPercent == cap.wearPercent &&
                 stepAttrition == cap.stepAttrition;
     }

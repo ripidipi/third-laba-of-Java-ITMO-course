@@ -17,8 +17,7 @@ public class Stick extends Equipment{
         if (this == o) {return true;}
         if (o == null || (getClass() != o.getClass())) {return false;}
         Stick stick = (Stick) o;
-        return  id == stick.id &&
-                material == stick.material &&
+        return material == stick.material &&
                 wearPercent == stick.wearPercent &&
                 stepAttrition == stick.stepAttrition;
     }

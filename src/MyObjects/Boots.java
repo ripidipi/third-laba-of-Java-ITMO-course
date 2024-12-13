@@ -17,8 +17,7 @@ public class Boots extends Equipment{
         if (this == o) {return true;}
         if (o == null || (getClass() != o.getClass())) {return false;}
         Boots boots = (Boots) o;
-        return  id == boots.id &&
-                material == boots.material &&
+        return material == boots.material &&
                 wearPercent == boots.wearPercent &&
                 stepAttrition == boots.stepAttrition;
     }

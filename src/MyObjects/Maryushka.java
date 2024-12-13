@@ -15,6 +15,11 @@ public class Maryushka implements MainCharacter {
         levelOfBeauty = levelOfMaryushkaBeauty;
     }
 
+    public void cry(CoveredObjects onWhatObject) {
+        onWhatObject.setCoveringMaterial(Materials.WATER);
+        levelOfBeauty++;
+    }
+
     @Override
     public void applyDamage(double damage) {
         hp -= damage;

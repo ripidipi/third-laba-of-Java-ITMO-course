@@ -1,6 +1,7 @@
 package MyObjects;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class House {
 
@@ -33,9 +34,69 @@ public class House {
         roof = new Roof(roofMaterial);
     }
 
-    public record Windows(Materials mainMaterial) { }
+    public abstract static class CoveredObject implements CoveredObjects {
 
-    public record Walls(Materials mainMaterial) { }
+        private final Materials mainMaterial;
+        private Materials coveringMaterial;
+
+        CoveredObject(Materials mainMaterial, Materials coveringMaterial) {
+            this.coveringMaterial = coveringMaterial;
+            this.mainMaterial = mainMaterial;
+        }
+
+        public Materials getWindowMaterial() {
+            return this.mainMaterial;
+        }
+
+        @Override
+        public Materials getCoveringMaterial() {
+            return this.coveringMaterial;
+        }
+
+        @Override
+        public void setCoveringMaterial(Materials coveringMaterial) {
+            this.coveringMaterial = coveringMaterial;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            CoveredObject windows = (CoveredObject) o;
+            return  mainMaterial.equals(windows.mainMaterial) &&
+                    coveringMaterial.equals(windows.coveringMaterial);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(mainMaterial, coveringMaterial);
+        }
+
+        @Override
+        public String toString() {
+            return this.getClass().toString().split("\\.")[1] + "{" +
+                    "main material='" + mainMaterial + '\'' +
+                    ", covering material='" + coveringMaterial + '\'' +
+                    '}';
+        }
+
+    }
+
+    public static class Windows extends CoveredObject{
+
+        Windows(Materials mainMaterial) {
+            super(mainMaterial, Materials.NOTHING);
+        }
+
+    }
+
+    public static class Walls extends CoveredObject {
+
+        Walls(Materials mainMaterial) {
+            super(mainMaterial, Materials.NOTHING);
+        }
+
+    }
 
     public record Roof(Materials mainMaterial) { }
 
