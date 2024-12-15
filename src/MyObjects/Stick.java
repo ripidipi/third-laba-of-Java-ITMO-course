@@ -7,19 +7,9 @@ public class Stick extends Equipment{
     static int counter = 0;
     final int id;
 
-    Stick(Materials mainMaterial, double baseStepAttrition) {
+    public Stick(Materials mainMaterial, double baseStepAttrition) {
         super(mainMaterial, baseStepAttrition);
         id = counter++;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {return true;}
-        if (o == null || (getClass() != o.getClass())) {return false;}
-        Stick stick = (Stick) o;
-        return material == stick.material &&
-                wearPercent == stick.wearPercent &&
-                stepAttrition == stick.stepAttrition;
     }
 
     @Override

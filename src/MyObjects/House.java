@@ -5,11 +5,18 @@ import java.util.Objects;
 
 public class House {
 
-    ArrayList<Windows> windows;
-    ArrayList<Walls> walls;
-    ArrayList<Door> doors;
-    ArrayList<Floor> floors;
-    Roof roof;
+    private ArrayList<Windows> windows = new ArrayList<Windows>();
+    private ArrayList<Walls> walls = new ArrayList<Walls>();
+    private ArrayList<Door> doors = new ArrayList<Door>();
+    private ArrayList<Floor> floors = new ArrayList<Floor>();
+    private Roof roof;
+
+    public House() {
+        this.windows = new ArrayList<>();
+        this.walls = new ArrayList<>();
+        this.doors = new ArrayList<>();
+        this.floors = new ArrayList<>();
+    }
 
 
     public void assemblingHome(Materials windowMaterial, int windowQuantity, Materials wallsMaterial, int wallQuantity,
@@ -34,6 +41,26 @@ public class House {
         roof = new Roof(roofMaterial);
     }
 
+    public ArrayList<Windows> getWindows() {
+        return windows;
+    }
+
+    public ArrayList<Walls> getWalls() {
+        return walls;
+    }
+
+    public ArrayList<Door> getDoors() {
+        return doors;
+    }
+
+    public ArrayList<Floor> getFloors() {
+        return floors;
+    }
+
+    public Roof getRoof() {
+        return roof;
+    }
+
     public abstract static class CoveredObject implements CoveredObjects {
 
         private final Materials mainMaterial;
@@ -56,6 +83,7 @@ public class House {
         @Override
         public void setCoveringMaterial(Materials coveringMaterial) {
             this.coveringMaterial = coveringMaterial;
+            System.out.printf("%s covered with %s\n", this.getClass().toString().split("\\.")[1].split("\\$")[1], coveringMaterial);
         }
 
         @Override
@@ -90,9 +118,9 @@ public class House {
 
     }
 
-    public static class Walls extends CoveredObject {
+    public static class Floor extends CoveredObject {
 
-        Walls(Materials mainMaterial) {
+        Floor(Materials mainMaterial) {
             super(mainMaterial, Materials.NOTHING);
         }
 
@@ -102,6 +130,6 @@ public class House {
 
     public record Door(Materials mainMaterial) { }
 
-    public record Floor(Materials mainMaterial) { }
+    public record Walls(Materials mainMaterial) { }
 
 }

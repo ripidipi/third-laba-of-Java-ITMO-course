@@ -34,9 +34,12 @@ public abstract class Equipment implements Items {
 
     @Override
     public void applyAttrition(double extraPercent) {
+        if(!this.isItWhole()) {
+            throw new UsingOfBrokenEquipment("Error UsingOfBrokenEquipment has occurred.", this);
+        }
         /* apply attrition for boots */
         double wearPerStroke = this.calculateAttrition(extraPercent);
-        System.out.printf("%s wear and tear were worn out by %.1f percent", this.getClass().toString().split("\\.")[1], wearPerStroke);
+        System.out.printf("%s wear and tear were worn out by %.1f percent\n", this.getClass().toString().split("\\.")[1], wearPerStroke);
         this.attrition(wearPerStroke);
     }
 
@@ -54,6 +57,9 @@ public abstract class Equipment implements Items {
 
     protected void attrition(double additionalWear) {
         /* apply damage that equipment take every step */
+        if(!this.isItWhole()) {
+            throw new UsingOfBrokenEquipment("Error UsingOfBrokenEquipment has occurred.", this);
+        }
         this.wearPercent -= additionalWear;
     }
 

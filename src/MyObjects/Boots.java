@@ -7,19 +7,9 @@ public class Boots extends Equipment{
     static int counter = 0;
     final int id;
 
-    Boots(Materials mainMaterial, double baseStepAttrition) {
+    public Boots(Materials mainMaterial, double baseStepAttrition) {
         super(mainMaterial, baseStepAttrition);
         id = counter++;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {return true;}
-        if (o == null || (getClass() != o.getClass())) {return false;}
-        Boots boots = (Boots) o;
-        return material == boots.material &&
-                wearPercent == boots.wearPercent &&
-                stepAttrition == boots.stepAttrition;
     }
 
     @Override

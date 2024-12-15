@@ -3,25 +3,36 @@ package MyObjects;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Maryushka implements MainCharacter {
+public class Maryushka implements MainCharacter, LivingBeing {
 
     static final int age = 16;
     static private double hp;
     static private double levelOfBeauty;
     static private ArrayList<Items> equipments = new ArrayList<Items>();
 
-    Maryushka(double heatPoints, double levelOfMaryushkaBeauty) {
+    public Maryushka(double heatPoints, double levelOfMaryushkaBeauty) {
         hp = heatPoints;
         levelOfBeauty = levelOfMaryushkaBeauty;
     }
 
     public void cry(CoveredObjects onWhatObject) {
+        if (!this.alive()) {
+            throw new ActionWithDeadCharacter("Error ActionWithDeadCharacter. ", this);
+        }
         onWhatObject.setCoveringMaterial(Materials.WATER);
         levelOfBeauty++;
+        System.out.println("Maryushka level of beauty +1");
+    }
+
+    private boolean alive() {
+        return hp > 0;
     }
 
     @Override
     public void applyDamage(double damage) {
+        if (!this.alive()) {
+            throw new ActionWithDeadCharacter("Error ActionWithDeadCharacter. ", this);
+        }
         hp -= damage;
     }
 
@@ -57,6 +68,7 @@ public class Maryushka implements MainCharacter {
 
     @Override
     public void setEquipment(ArrayList<Items> equipmentsList) {
+        System.out.println("Maryushka got " + equipmentsList.toString());
         equipments.clear();
         equipments.addAll(equipmentsList);
     }

@@ -7,19 +7,9 @@ public class Cap extends Equipment {
     static int counter = 0;
     final int id;
 
-    Cap(Materials mainMaterial, double baseStepAttrition) {
+    public Cap(Materials mainMaterial, double baseStepAttrition) {
         super(mainMaterial, baseStepAttrition);
         id = counter++;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {return true;}
-        if (o == null || (getClass() != o.getClass())) {return false;}
-        Cap cap = (Cap) o;
-        return material == cap.material &&
-                wearPercent == cap.wearPercent &&
-                stepAttrition == cap.stepAttrition;
     }
 
     @Override
