@@ -16,9 +16,7 @@ public class Maryushka implements MainCharacter, LivingBeing {
     }
 
     public void cry(CoveredObjects onWhatObject) {
-        if (!this.alive()) {
-            throw new ActionWithDeadCharacter("Error ActionWithDeadCharacter. ", this);
-        }
+        checkingForAnError();
         onWhatObject.setCoveringMaterial(Materials.WATER);
         levelOfBeauty++;
         System.out.println("Maryushka level of beauty +1");
@@ -28,11 +26,15 @@ public class Maryushka implements MainCharacter, LivingBeing {
         return hp > 0;
     }
 
-    @Override
-    public void applyDamage(double damage) {
+    private void checkingForAnError() {
         if (!this.alive()) {
             throw new ActionWithDeadCharacter("Error ActionWithDeadCharacter. ", this);
         }
+    }
+
+    @Override
+    public void applyDamage(double damage) {
+        checkingForAnError();
         hp -= damage;
     }
 
