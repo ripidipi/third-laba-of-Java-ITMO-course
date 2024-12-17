@@ -10,7 +10,7 @@ public interface Items {
 
     public default void applyAttrition(double extra_damage_percent){}
 
-    public default boolean isItWhole() {return false;}
+    public boolean isItWhole();
 
     abstract int getId();
 }

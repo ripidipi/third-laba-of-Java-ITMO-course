@@ -8,11 +8,11 @@ public interface MainCharacter {
 
     public default ArrayList<Items> getEquipments() {return new ArrayList<Items>();}
 
-    public default void addEquipment(Equipment equipment) {}
+    public void addEquipment(Equipment equipment);
 
-    public default void removeEquipment(Equipment equipment) {}
+    public void removeEquipment(Equipment equipment);
 
-    public default void setEquipment(ArrayList<Items> equipments) {}
+    public void setEquipment(ArrayList<Items> equipments);
 
-    public default void cry(CoveredObjects onWhatObject) {}
+    public void cry(CoveredObjects onWhatObject);
 }
