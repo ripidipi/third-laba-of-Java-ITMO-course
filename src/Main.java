@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         try {
-            Maryushka maryushka = new Maryushka(Math.random() * 100, Math.random() * 100);
+            Maryushka maryushka = Maryushka.getInstance(Math.random() * 100, Math.random() * 100);
             Falcon falcon = new Falcon(Math.random() * 100);
             House house = new House();
             ArrayList<Items> items = new ArrayList<Items>();

@@ -2,9 +2,9 @@ package MyObjects;
 
 public interface LivingBeing {
 
-    public default double getHp () {return 0;}
+    default double getHp () {return 0;}
 
-    public void applyDamage (double damage);
+    void applyDamage (double damage);
 
-    public void applyHeal (double heal);
+    void applyHeal (double heal);
 }

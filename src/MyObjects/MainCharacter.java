@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public interface MainCharacter {
 
-    public default double getLevelOfBeauty() {return 0;}
+    default double getLevelOfBeauty() {return 0;}
 
-    public default ArrayList<Items> getEquipments() {return new ArrayList<Items>();}
+    default ArrayList<Items> getEquipments() {return new ArrayList<Items>();}
 
-    public void addEquipment(Equipment equipment);
+    void addEquipment(Equipment equipment);
 
-    public void removeEquipment(Equipment equipment);
+    void removeEquipment(Equipment equipment);
 
-    public void setEquipment(ArrayList<Items> equipments);
+    void setEquipment(ArrayList<Items> equipments);
 
-    public void cry(CoveredObjects onWhatObject);
+    void cry(CoveredObjects onWhatObject);
 }

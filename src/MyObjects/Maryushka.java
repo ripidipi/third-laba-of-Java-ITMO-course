@@ -5,14 +5,23 @@ import java.util.Objects;
 
 public class Maryushka implements MainCharacter, LivingBeing {
 
-    static final int age = 16;
-    static private double hp;
-    static private double levelOfBeauty;
-    static private ArrayList<Items> equipments = new ArrayList<Items>();
+    final int age = 16;
+    private double hp;
+    private double levelOfBeauty;
+    private ArrayList<Items> equipments = new ArrayList<Items>();
 
-    public Maryushka(double heatPoints, double levelOfMaryushkaBeauty) {
+    private static Maryushka instance;
+
+    private Maryushka(double heatPoints, double levelOfMaryushkaBeauty) {
         hp = heatPoints;
         levelOfBeauty = levelOfMaryushkaBeauty;
+    }
+
+    public static Maryushka getInstance(double heatPoints, double levelOfMaryushkaBeauty) {
+        if (instance == null) {
+            instance = new Maryushka(heatPoints, levelOfMaryushkaBeauty);
+        }
+        return instance;
     }
 
     public void cry(CoveredObjects onWhatObject) {
@@ -98,5 +107,4 @@ public class Maryushka implements MainCharacter, LivingBeing {
                 ", equipments=" + equipments + '\'' +
                 '}';
     }
-
 }
