@@ -87,9 +87,7 @@ public class Maryushka implements MainCharacter, LivingBeing {
     @Override
     public boolean equals(Object o) {
         if (this == o) {return true;}
-        if (o == null || (getClass() != o.getClass())) {return false;}
-        Maryushka maryushka = (Maryushka) o;
-        return true;
+        return o != null && (getClass() == o.getClass());
 
     }
 
