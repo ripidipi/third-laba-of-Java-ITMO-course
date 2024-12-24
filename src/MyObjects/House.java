@@ -5,10 +5,10 @@ import java.util.Objects;
 
 public class House {
 
-    private ArrayList<Windows> windows = new ArrayList<Windows>();
-    private ArrayList<Walls> walls = new ArrayList<Walls>();
-    private ArrayList<Door> doors = new ArrayList<Door>();
-    private ArrayList<Floor> floors = new ArrayList<Floor>();
+    private ArrayList<Windows> windows = new ArrayList<>();
+    private ArrayList<Walls> walls = new ArrayList<>();
+    private ArrayList<Door> doors = new ArrayList<>();
+    private ArrayList<Floor> floors = new ArrayList<>();
     private Roof roof;
 
     public House() {
@@ -20,25 +20,39 @@ public class House {
 
 
     public void assemblingHome(Materials windowMaterial, int windowQuantity, Materials wallsMaterial, int wallQuantity,
-                           Materials roofMaterial,  Materials doorMaterial, int doorQuantity,
+                           Materials roofMaterial, Materials doorMaterial, int doorQuantity,
                            Materials floorMaterial, int floorQuantity) {
+        try{
+            for (int i = 0; i < windowQuantity; i++) {
+                windows.add(new Windows(windowMaterial));
+            }
 
-        for (int i = 0; i < windowQuantity; i++) {
-            windows.add(new Windows(windowMaterial));
-        }
+            for (int i = 0; i < wallQuantity; i++) {
+                walls.add(new Walls(wallsMaterial));
+            }
 
-        for (int i = 0; i < wallQuantity; i++) {
-            walls.add(new Walls(wallsMaterial));
-        }
+            for (int i = 0; i < doorQuantity; i++) {
+                doors.add(new Door(doorMaterial));
+            }
 
-        for (int i = 0; i < doorQuantity; i++) {
-            doors.add(new Door(doorMaterial));
+            for (int i = 0; i < floorQuantity; i++) {
+                floors.add(new Floor(floorMaterial));
+            }
+            roof = new Roof(roofMaterial);
+            checkHouseStructureViolation();
+        } catch (ViolationOfConstruction e) {
+            System.err.println(e.getMessage());
+        } catch (Exception e) {
+            System.err.printf("Error %s\n", e.getMessage());
+        } finally {
+            System.out.println("House assembled successfully");
         }
+    }
 
-        for (int i = 0; i < floorQuantity; i++) {
-            floors.add(new Floor(floorMaterial));
-        }
-        roof = new Roof(roofMaterial);
+    public void checkHouseStructureViolation() throws ViolationOfConstruction {
+         if (walls.isEmpty() || doors.isEmpty() || floors.isEmpty() || windows.isEmpty()) {
+             throw new ViolationOfConstruction("Lack of components");
+         }
     }
 
     public ArrayList<Windows> getWindows() {

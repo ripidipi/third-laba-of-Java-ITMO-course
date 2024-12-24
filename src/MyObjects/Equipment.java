@@ -34,16 +34,11 @@ public abstract class Equipment implements Items {
 
     @Override
     public void applyAttrition(double extraPercent) {
-        try {
-            if (!isItWhole()) {
-                throw new UsingOfBrokenEquipment("Error UsingOfBrokenEquipment has occurred.", this);
-            }
-            double wearPerStroke = this.calculateAttrition(extraPercent);
-            System.out.printf("%s wear and tear were worn out by %.1f percent\n", this.getClass().toString().split("\\.")[1], wearPerStroke);
-            this.attrition(wearPerStroke);
-        } catch (UsingOfBrokenEquipment e) {
-            System.err.println(e.getMessage());
-        }
+        checkingForAnError();
+        double wearPerStroke = this.calculateAttrition(extraPercent);
+        System.out.printf("%s wear and tear were worn out by %.1f percent\n", this.getClass().toString().split("\\.")[1], wearPerStroke);
+        this.attrition(wearPerStroke);
+
     }
 
     public abstract int getId();
@@ -59,19 +54,19 @@ public abstract class Equipment implements Items {
     }
 
     protected void attrition(double additionalWear) {
-        try {
-            if (!this.isItWhole()) {
-                throw new UsingOfBrokenEquipment("Error UsingOfBrokenEquipment has occurred.", this);
-            }
-            this.wearPercent -= additionalWear;
-        } catch (UsingOfBrokenEquipment e) {
-            System.err.println(e.getMessage());
-        }
+        checkingForAnError();
+        this.wearPercent -= additionalWear;
     }
 
     private double calculateAttrition(double damage_percent) {
         /* calculate attrition and return double with damage */
         return this.stepAttrition * (damage_percent) * this.material.getEnduranceCoefficient();
+    }
+
+    private void checkingForAnError() throws UsingOfBrokenEquipment {
+        if (!this.isItWhole()) {
+            throw new UsingOfBrokenEquipment("Error UsingOfBrokenEquipment has occurred.", this);
+        }
     }
 
     @Override

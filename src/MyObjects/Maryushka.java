@@ -8,7 +8,7 @@ public class Maryushka implements MainCharacter, LivingBeing {
     final int age = 16;
     private double hp;
     private double levelOfBeauty;
-    private ArrayList<Items> equipments = new ArrayList<Items>();
+    private ArrayList<Items> equipments = new ArrayList<>();
 
     private static Maryushka instance;
 
@@ -24,7 +24,7 @@ public class Maryushka implements MainCharacter, LivingBeing {
         return instance;
     }
 
-    public void cry(CoveredObjects onWhatObject) {
+    public void cry(CoveredObjects onWhatObject) throws ActionWithDeadCharacter {
         checkingForAnError();
         onWhatObject.setCoveringMaterial(Materials.WATER);
         levelOfBeauty++;
@@ -35,14 +35,14 @@ public class Maryushka implements MainCharacter, LivingBeing {
         return hp > 0;
     }
 
-    private void checkingForAnError() {
+    private void checkingForAnError() throws ActionWithDeadCharacter {
         if (!this.alive()) {
             throw new ActionWithDeadCharacter("Error ActionWithDeadCharacter. ", this);
         }
     }
 
     @Override
-    public void applyDamage(double damage) {
+    public void applyDamage(double damage) throws ActionWithDeadCharacter {
         checkingForAnError();
         hp -= damage;
     }
@@ -70,6 +70,11 @@ public class Maryushka implements MainCharacter, LivingBeing {
     @Override
     public void addEquipment(Equipment equipment) {
         equipments.add(equipment);
+    }
+
+    @Override
+    public int receiveEquipmentIndex(Equipment equipment) {
+        return equipments.indexOf(equipment);
     }
 
     @Override

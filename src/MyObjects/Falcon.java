@@ -12,14 +12,14 @@ public class Falcon implements LivingBeing{
         return hp > 0;
     }
 
-    private void checkingForAnError() {
+    private void checkingForAnError() throws ActionWithDeadCharacter {
         if (!this.alive()) {
             throw new ActionWithDeadCharacter("Error ActionWithDeadCharacter. ", this);
         }
     }
 
     @Override
-    public void applyDamage(double damage) {
+    public void applyDamage(double damage) throws ActionWithDeadCharacter {
         checkingForAnError();
         hp -= damage;
     }
@@ -34,7 +34,7 @@ public class Falcon implements LivingBeing{
         return hp;
     }
 
-    public void bleed(CoveredObjects onWhatObject) {
+    public void bleed(CoveredObjects onWhatObject) throws ActionWithDeadCharacter {
         checkingForAnError();
         onWhatObject.setCoveringMaterial(Materials.BLOOD);
     }

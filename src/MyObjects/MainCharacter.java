@@ -12,6 +12,8 @@ public interface MainCharacter {
 
     void removeEquipment(Equipment equipment);
 
+    int receiveEquipmentIndex(Equipment equipment);
+
     void setEquipment(ArrayList<Items> equipments);
 
     void cry(CoveredObjects onWhatObject);
